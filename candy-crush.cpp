@@ -1,8 +1,73 @@
+
+Conversation opened. 5 messages. All messages read.
+
+
+Skip to content
+Using Gmail with screen readers
+You’re running low on storage space. Try freeing up space or purchase additional storage.
+candy crush 
+
+3 of 9
+PROJECT SUBMISSION LOCKED
+Inbox
+x
+
+Maryam Bokhari <mbokhari786@gmail.com>
+Attachments
+Thu, Dec 8, 2016, 1:27 PM
+to Rafia, atique.rehman
+
+Respected Sir/Madam,
+I uploaded my project at 3 pm on slate and later I did some edits. When I opened slate again it had locked my submission. Is there any way you can re open it. I thought there was an infinite amount of resubmissions allowed then why is this happening. 
+I have attached a document of my final code. 
+
+Please provide me with a solution.
+
+
+Maryam Bokhari- i160050 
+Section E 
+FAST- NU 
+Candy -crush project
+
+Attachments area
+
+Maryam Bokhari <mbokhari786@gmail.com>
+Attachments
+Sun, Apr 23, 2017, 2:44 AM
+to Fam
+
+Oyee... Here's the code XD 
+
+Attachments area
+
+Fam W <fati.wasim@gmail.com>
+Attachments
+Mon, May 1, 2017, 2:32 PM
+to me
+
+
+Attachments area
+
+Maryam Bokhari <mbokhari786@gmail.com>
+Mon, May 1, 2017, 2:53 PM
+to Fam
+
+bro submit kera doo 
+
+
+	Virus-free. www.avast.com
+
+
+Fam W <fati.wasim@gmail.com>
+Mon, May 1, 2017, 3:02 PM
+to me
+
+Kar deee
+
+
 //============================================================================
 // Name        : cookie-crush.cpp
-// Graphics    : Sibt ul Hussain- Assistant proffessor at NU-Fast
-// Author      : Maryam Bokhari 
-// Version     :
+// Author      : Maryam Bokhari
 // Copyright   : (c) Reserved
 // Description : Basic 2D game of Cookie  Crush...
 //============================================================================
@@ -194,20 +259,14 @@ void autofalling(int Array[10][15])
      for(j=0;j<15;j++)
        { 
 	if(Array[i][j]==8)
-	{ if(Array[i+1][j]!=8)
-	   {
-	for(int fill=i;fill<9;fill++)
+	{ for(int fill=i;fill<9;fill++)
             {int temp = Array[fill][j]; 
              Array[fill][j] = Array[fill+1][j];
              Array[fill+1][j] = temp;
 	    }
-           }
-	else
-	{	break; 
-	}
+        }
        }
-	}
-}
+  }
 }
 
 void autofillingafterfalling(int Ck[10][15])
@@ -340,18 +399,13 @@ void DisplayFunction() {
 	// draw cookies..;
 	GetCookie(Array);
 	// Pass time so we can see the Random Cookies first Generated   	
-	//static int count=0;
-        //while(count<100)
-	//{count++;}
+
 	
 	//AutoCrushing random generated cookies
    	autocrushing(Array);
 	cout<<endl;
 	// Pass time so we can see the AutoCrushing Effects  	
-	//static int again=0;
-        //while(again<100)
-	//{again++;}
-	//Check array 
+       
 	cout<<"AutoCrushing Array"<<endl; 
 	for(int i=0; i<10;i++)
           { for(int j=0;j<15;j++)
@@ -465,9 +519,9 @@ void NonPrintableKeys(int key, int x, int y) {
  * This function has two arguments: x & y that tells the coordinate of current position of move mouse
  *
  * */
+ 
 
-
-int swapping(int movedx,int movedy)
+void swapping(int movedx,int movedy)
 {      
        cout<<"Random numbers corresponding to both cells"<<endl;
        cout<<Array[clickx][clicky]<<","<<Array[movedx][movedy]<<endl;   
@@ -501,17 +555,45 @@ int swapping(int movedx,int movedy)
 	   }
 	score=score+swappingscore;
 	cout<<"Current Score"<<score<<endl; 
-	return swappingscore; 
+	if(swappingscore==0)
+	{	
+
+		DisplayFunction();
+		//usleep(1*1000*1000*5);
+		
 	
+		
+		int temp1=Array[movedx][movedy];
+		Array[movedx][movedy]=Array[clickx][clicky];
+	        Array[clickx][clicky]=temp1;
+
+		DisplayFunction();
+		//usleep(1*1000*1000*5);
+
+		cout<<"Swapping was not successful:swap back"<<endl;
+		 int before[10][15];
+		  for(int i=0;i<10;i++)
+		   { for(int j=0;j<15;j++)
+		    { before[i][j]=Array[i][j]; 
+			cout<<before[i][j]<<" ";
+			 
+		    }
+			cout<<endl;
+		   }
+
+	}
+	  
+
+
+
 
 }
+
+
+
 void MouseMoved(int x, int y) {
 	cout << "Current Mouse Coordinates X=" << x << " Y= " << height - y << endl;
-	//Pixels2Cell(y,x,cellx,celly);
-	//x=cellx;
-	//y=celly; 		
-	//cout<<"Mouse Cell X coordinates"<<cellx<<endl<<"Mouse Cell Y coordinates"<<celly<<endl;
-	//glutPostRedisplay();
+	
 }
 
 /*This function is called (automatically) whenever your mouse button is clicked witin inside the game window
@@ -542,67 +624,35 @@ void MouseClicked(int button, int state, int x, int y)
 			Pixels2Cell(height-y,x,movedx,movedy);
 			cout<<movedx<<"  "<<movedy<<endl;
 			cout<<clickx<<","<<clicky<<"   "<<movedx<<","<<movedy<<" "<<endl;
-			int ss; 
 				//moved to the right 
 			    if( clickx==movedx && clicky==(movedy+1))
 			     {    cout<<"Moved right";
-				ss=swapping(movedx,movedy); 
+				swapping(movedx,movedy); 
 			     }
 
 				//MOVED TO THE LEFT
 			    else if(clickx==movedx && clicky==(movedy-1))
 			    { 	cout<<"Moved left";  
-				ss=swapping(movedx,movedy);
+				swapping(movedx,movedy);
 			    }
 				//moved up one space
 			    
 
 			    else if(clickx==(movedx+1) && clicky==(movedy))
 			    { 	cout<<"Moved up";
-				ss=swapping(movedx,movedy); 
+				swapping(movedx,movedy); 
 			    }
 				//moved down one space 
 
 			    else if(clickx==(movedx-1) && clicky==(movedy))
 			    { 	cout<<"Moved down";
-				ss=swapping(movedx,movedy); 
+				swapping(movedx,movedy); 
 			    }
 			    else
 			    {
 				cout<<"wrong swapping:Moused moved to unacceptable location";  
 			    } 
-	if(ss==0)
-	{	
-
-		glutPostRedisplay();
-		//usleep(1*1000*1000*5);
-		
-		static int x=0;
-		while(x<10000000)
-		{   x++;       }
-		
-		
-		int temp1=Array[movedx][movedy];
-		Array[movedx][movedy]=Array[clickx][clicky];
-	        Array[clickx][clicky]=temp1;
-	//isplayfunction(); 
-		static int y=0;
-		while(y<1000)
-		{   y++;       }
-		//usleep(1*1000*1000*5);
-		return;
-		cout<<"Swapping was not successful:swap back"<<endl;
-		 int before[10][15];
-		  for(int i=0;i<10;i++)
-		   { for(int j=0;j<15;j++)
-		    { before[i][j]=Array[i][j]; 
-			cout<<before[i][j]<<" ";
-			 
-		    }
-			cout<<endl;
-		   }
 		}
-	}
 	//cout<<cellx<<celly<<movedx<<movedy; 
 	//MouseDirection(cellx,celly,movedx,movedy);
  
@@ -685,3 +735,5 @@ int main(int argc, char*argv[]) {
 	return 1;
 }
 #endif /* */
+candy-crush.cpp
+Displaying candy-crush.cpp.
